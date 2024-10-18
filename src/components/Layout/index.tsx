@@ -5,7 +5,7 @@ import { Breadcrumb, Layout as AntdLayout, Menu, theme,Dropdown } from 'antd';
 import Head from "next/head";
 import Image from "next/image";
 import { useRouter} from "next/router";
-import React, { Children } from 'react';
+import React, { PropsWithChildren } from 'react';
 import styles from "./index.module.css";
 
 
@@ -91,9 +91,7 @@ const USER_ITEMS: MenuProps["items"] = [
  },
 ];
 
-
-export function Layout({children}){
-
+export const Layout: React.FC<PropsWithChildren> = ({children}) =>{
     const router = useRouter();
     const handleMenuClick = ({key}) => {
         router.push(key);
@@ -155,7 +153,7 @@ const App: React.FC = () => {
       token: { colorBgContainer, borderRadiusLG },
     } = theme.useToken();
   
-    return <AntLayout>
+    return <AntdLayout>
     <Header className='header'>
       <div className="logo" />
       <Menu
@@ -165,7 +163,7 @@ const App: React.FC = () => {
         items={items1}
       />
     </Header>
-    <AntLayout>
+    <AntdLayout>
       <Sider width={200} style={{ background: colorBgContainer }}>
         <Menu
           mode="inline"
@@ -175,7 +173,7 @@ const App: React.FC = () => {
           items={items2}
         />
       </Sider>
-      <AntLayout style={{ padding: '0 24px 24px' }}>
+      <AntdLayout style={{ padding: '0 24px 24px' }}>
         <Breadcrumb
           items={[{ title: 'Home' }, { title: 'List' }, { title: 'App' }]}
           style={{ margin: '16px 0' }}
@@ -191,7 +189,7 @@ const App: React.FC = () => {
         >
           Content
         </Content>
-      </AntLayout>
-    </AntLayout>
-  </AntLayout>
+      </AntdLayout>
+    </AntdLayout>
+  </AntdLayout>
 }
